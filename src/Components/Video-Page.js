@@ -1,4 +1,4 @@
-import { useVid } from "../videoProvider";
+import { useVid } from "../Video-Context/Video-Provider";
 import { useParams, Link } from "react-router-dom";
 
 export function VideoPage() {

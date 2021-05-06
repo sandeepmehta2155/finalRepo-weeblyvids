@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useVid } from "../videoProvider";
+import { useVid } from "../Video-Context/Video-Provider";
 import * as useComponent from "../index";
 
 export function Home() {

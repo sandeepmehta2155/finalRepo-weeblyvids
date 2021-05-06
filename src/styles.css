@@ -1,4 +1,244 @@
-.App {
-  font-family: sans-serif;
+@import "https://vinbolib.netlify.app/index.css";
+@import url("https://fonts.googleapis.com/css2?family=Sacramento&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mallanna&display=swap");
+
+:root {
+  --primary-color: purple;
+  --secondary-color: lightgray;
+}
+#root {
+  margin: 0;
+  padding: 0;
+}
+html {
+  overflow-y: none;
+  overflow-x: scroll;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 5rem;
+  padding: 1rem;
+  top: 0;
+  background-color: var(--secondary-color);
+}
+.bi.bi-house-fill,
+.bi-person-circle {
+  background-color: transparent;
+  border: transparent;
+  width: 3rem;
+  height: 3rem;
+  float: right;
+  margin-right: 3rem;
+  position: relative;
+  bottom: 4rem;
+}
+.bi.bi-house-fill {
+  width: 4rem;
+  height: 4rem;
+  margin-right: 1rem;
+  position: relative;
+  bottom: 4.2rem;
+}
+.search {
+  position: fixed;
+  left: 21.5rem;
+  top: 1.4rem;
+  height: 2.5rem;
+  width: 47.1%;
+  outline: none;
+}
+
+.videoBadges {
+  position: absolute;
+  top: 12%;
+  left: 20%;
+  z-index: -1;
+}
+.videoSnippet {
+  width: 100%;
+}
+.videoSnippet.History,
+.Liked,
+.Subscription,
+.WatchLater {
+  width: 70%;
+}
+
+.HistoryItems,
+.SubscribedItems,
+.WatchLaterItems,
+.LikedItems {
+  position: relative;
+  top: 10rem;
+  margin: auto;
   text-align: center;
+  z-index: -1;
+}
+.HistoryTag,
+.SubscriptionTag,
+.WatchLaterTag,
+.LikedTag {
+  position: relative;
+  margin: auto;
+  text-align: center;
+}
+
+.HistoryList,
+.SubscriptionList,
+.WatchLaterList,
+.LikedList {
+  border: 1px solid lightgray;
+  position: relative;
+  margin: auto;
+  list-style: none;
+  width: 50%;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  /* text-align: center; */
+}
+
+.vidNavAndList {
+  display: flex;
+}
+.navigation {
+  position: fixed;
+  top: 8rem;
+  left: 2rem;
+  display: block;
+  width: 15%;
+  max-height: 80%;
+  overflow-y: none;
+  overflow-x: scroll;
+  text-align: left;
+}
+.navigationPills {
+  /* margin: 5rem; */
+  display: list-item;
+  list-style: none;
+  margin-top: 5rem;
+  font-size: 1.2rem;
+  margin-bottom: 4rem;
+  margin-left: 3rem;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+.videoList {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+}
+
+.videoList > li {
+  margin: 10px;
+}
+
+.videoCard {
+  width: 23%;
+  list-style: none;
+}
+.streamer {
+  position: relative;
+  bottom: 0.5rem;
+  left: 0.5rem;
+}
+
+.streamerIcon {
+  width: 25px;
+  height: 25px;
+  border: none;
+  border-radius: 50%;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/*VIDEO Page */
+.videoPage {
+  position: relative;
+  top: 10rem;
+  left: 2.5%;
+  z-index: -1;
+}
+.videoPageVideoSnippet {
+  width: 60%;
+  height: 60vh;
+}
+.relatedVideos {
+  width: 25%;
+  position: absolute;
+  top: 0rem;
+  right: 6rem;
+}
+.streamerBottomSpan {
+  float: right;
+}
+.videoSub {
+  margin: 1rem;
+  padding: 1rem;
+  width: 55%;
+  border: 1px solid lightgray;
+  border-left: none;
+  border-right: none;
+}
+.bi.bi-collection-play-fill {
+  float: right;
+  height: 3rem;
+  width: 3rem;
+  background-color: transparent;
+  border: transparent;
+  margin-right: 0rem;
+  fill: #c00;
+}
+.bi.bi-hand-thumbs-upButton,
+.bi-stopwatch {
+  height: 3rem;
+  width: 3rem;
+  float: right;
+  margin-right: 0.5rem;
+  z-index: 9999;
+  background-color: transparent;
+  border: transparent;
+}
+.bi.bi-hand-thumbs-up.fill,
+.bi-stopwatch-fill {
+  fill: blue;
+  z-index: 9999;
+}
+
+.dateAndViewPills {
+  /* position: relative; */
+  float: left;
+}
+.subscribeTag,
+.subscribedTag {
+  color: gray;
+  border: lightgray 1px solid;
+  position: relative;
+  bottom: 0.5rem;
+  left: 1rem;
+}
+.subscribedTag {
+  background-color: #c00;
+  color: white;
 }
