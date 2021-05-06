@@ -127,6 +127,9 @@ body {
   margin-bottom: 4rem;
   margin-left: 3rem;
 }
+.navigationPills svg {
+  margin-right: 1rem;
+}
 
 ::-webkit-scrollbar {
   width: 12px;
