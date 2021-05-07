@@ -12,14 +12,14 @@ export function HistoryPage() {
         <h1 className="HistoryTag"> History </h1>
         <ul>
           {videoSrc.map(
-            ({ addedInHistory, videoDetails, srcLinks }) =>
+            ({ addedInHistory, videoDetails, srcLinks: src }) =>
               addedInHistory === "yes" && (
                 <li key={videoDetails.id} className="HistoryList">
-                  <Link to={`/video/${videoDetails.id}`} key={videoDetails.id}>
+                  <Link to={`/video/${videoDetails.id}`}>
                     <img
                       className="videoSnippet History"
                       title={videoDetails.title}
-                      src={srcLinks.imgSrc}
+                      src={src.imgSrc}
                       alt="loading"
                     />
                     <br />

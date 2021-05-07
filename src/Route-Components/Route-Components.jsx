@@ -11,6 +11,7 @@ export function RouteComponents() {
         <Route path="/subscription" element={<useComponent.Subscription />} />
         <Route path="/video/:videoID" element={<useComponent.VideoPage />} />
         <Route path="/watchlater" element={<useComponent.WatchLater />} />
+        <Route path="*" element={<useComponent.RedirectPage />} />
       </Routes>
     </>
   );

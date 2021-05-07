@@ -13,8 +13,8 @@ export function Subscription() {
           {videoSrc.map(
             ({ subscription, videoDetails, srcLinks }) =>
               subscription === "yes" && (
-                <li key={videoDetails.id} className="SubscriptionList">
-                  <Link to={`/video/${videoDetails.id}`} key={videoDetails.id}>
+                <Link to={`/video/${videoDetails.id}`} key={videoDetails.id}>
+                  <li key={videoDetails.id} className="SubscriptionList">
                     <img
                       className="videoSnippet Subscription"
                       title={videoDetails.title}
@@ -22,8 +22,8 @@ export function Subscription() {
                       alt="loading"
                     />
                     <h3>{videoDetails.title}</h3>
-                  </Link>
-                </li>
+                  </li>
+                </Link>
               )
           )}
         </ul>

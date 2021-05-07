@@ -5,6 +5,7 @@ import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { VideoProvider } from "./Video-Context/Video-Provider";
 
+export { RedirectPage } from "./Redirect-Page/Redirect-Page";
 export { Header } from "./Components/Header";
 export { Navigation } from "./Components/Navigation";
 export { Home } from "./Components/Home";

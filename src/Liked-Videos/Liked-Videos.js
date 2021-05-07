@@ -13,8 +13,8 @@ export function LikedVideos() {
           {videoSrc.map(
             ({ isVideoLiked, videoDetails, srcLinks }) =>
               isVideoLiked === "yes" && (
-                <li key={videoDetails.id} className="LikedList">
-                  <Link to={`/video/${videoDetails.id}`} key={videoDetails.id}>
+                <Link to={`/video/${videoDetails.id}`} key={videoDetails.id}>
+                  <li key={videoDetails.id} className="LikedList">
                     <img
                       className="videoSnippet Liked"
                       title={videoDetails.title}
@@ -22,8 +22,8 @@ export function LikedVideos() {
                       alt="loading"
                     />
                     <h3>{videoDetails.title}</h3>
-                  </Link>
-                </li>
+                  </li>
+                </Link>
               )
           )}
         </ul>
