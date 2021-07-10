@@ -7,6 +7,7 @@ export function RouteComponents() {
       <Routes>
         <Route path="/" element={<useComponent.Home />} />
         <Route path="/history" element={<useComponent.HistoryPage />} />
+        <Route path="/login" element={<useComponent.Login />} />
         <Route path="/likedvideos" element={<useComponent.LikedVideos />} />
         <Route path="/subscription" element={<useComponent.Subscription />} />
         <Route path="/video/:videoID" element={<useComponent.VideoPage />} />

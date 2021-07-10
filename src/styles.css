@@ -132,6 +132,44 @@ a {
   color: black;
 }
 
+/* LOGIN Page */
+.modalForLogin,
+.feedbackPage,
+.signUpPage {
+  position: relative;
+  top: 8rem;
+  border: 1px solid gray;
+  text-align: center;
+  margin: auto;
+  width: 40%;
+  margin-bottom: 10rem;
+}
+.modal1,
+.signUpPage input {
+  float: right;
+  margin-right: 30%;
+}
+.modal1,
+.signUpPage #check {
+  float: left;
+  margin: 0.255rem;
+  margin-left: 1rem;
+}
+.modal1,
+.signUpPage label,
+.feedbackPage label {
+  float: left;
+  margin-left: 20%;
+}
+
+/*SIGNUP Page*/
+.signUpPage label {
+  margin-left: 10%;
+}
+.signUpPage input {
+  margin-right: 20%;
+}
+
 /*VIDEO Page */
 .videoPage {
   position: relative;
