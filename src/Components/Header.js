@@ -17,7 +17,7 @@ export function Header() {
   return (
     <header className="header">
       <Link to="/">
-        <h1 className="name">Weeblyvids</h1>
+        <h1 className="name">Finvids</h1>
       </Link>
 
       <button onClick={() => loginHandler()} className="bi bi-person-circle">
