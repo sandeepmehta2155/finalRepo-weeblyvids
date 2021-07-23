@@ -13,6 +13,7 @@ export function RouteComponents() {
         <Route path="/video/:videoID" element={<useComponent.VideoPage />} />
         <Route path="/watchlater" element={<useComponent.WatchLater />} />
         <Route path="*" element={<useComponent.RedirectPage />} />
+        <Route path="/signup" element={<useComponent.SignUp />} />
       </Routes>
     </>
   );

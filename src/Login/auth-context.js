@@ -24,16 +24,28 @@ export function AuthProvider({ children }) {
 
   const [responseFromDB, setResponseFromDB] = useState(null);
 
+  const [validUserName, setValidUserName] = useState("none");
+
+  const [validPassword, setValidPassword] = useState("none");
+
   useEffect(() => {
-    responseFromDB === "Req can't be made"
+    responseFromDB === "req can't be made"
       ? setUserExists("block")
       : setUserExists("none");
+
+    responseFromDB === "invalid username"
+      ? setValidUserName("block")
+      : setValidUserName("none");
+
+    responseFromDB === "invalid password"
+      ? setValidPassword("block")
+      : setValidPassword("none");
 
     responseFromDB === "wrong password"
       ? setCheckPassword("block")
       : setCheckPassword("none");
 
-    if (responseFromDB === "user auth successfull") {
+    if (responseFromDB === "user auth is successfull") {
       setUserLogin(true);
       localStorage.setItem("login", JSON.stringify({ login: true }));
     }
@@ -43,42 +55,70 @@ export function AuthProvider({ children }) {
     setUserLogin(false);
     setUserExists("none");
     setCheckPassword("none");
-    localStorage.removeItem("historyItems");
+    localStorage.removeItem("historyvideos");
     localStorage.removeItem("login");
-    localStorage.removeItem("likedVideos");
-    localStorage.removeItem("subscription");
+    localStorage.removeItem("likedvideos");
+    localStorage.removeItem("subscriptions");
     localStorage.removeItem("username");
+    localStorage.removeItem("watchlatervideos");
+    localStorage.removeItem("playlist");
+
+    setTimeout(() => navigate("/"), 900);
   }
 
   function LoginUserWithCredentials(username, password) {
     (async function () {
-      axios.post("url").then((resp) => {
-        setResponseFromDB(resp.data.message);
+      axios
+        .get(`https://videolib.sandeepmehta215.repl.co/userauth/${username}`, {
+          params: {
+            password: password
+          }
+        })
+        .then((resp) => {
+          console.log(resp.data.message);
 
-        if (resp === "user auth successfull") {
-          localStorage.setItem(
-            "historyItems",
-            JSON.stringify({ historyItems: resp.data.historyitems })
-          );
+          if (resp.data.message) {
+            setResponseFromDB(resp.data.message);
 
-          localStorage.setItem(
-            "likedVideos",
-            JSON.stringify({ likeVideos: resp.data.likedvideos })
-          );
+            if (resp.data.message === "user auth is successfull") {
+              setUserLogin(true);
 
-          localStorage.setItem(
-            "subscription",
-            JSON.stringify({ subscription: resp.data.subscription })
-          );
+              localStorage.setItem("login", JSON.stringify({ login: true }));
 
-          localStorage.setItem(
-            "username",
-            JSON.stringify({ username: resp.data.username })
-          );
+              localStorage.setItem(
+                "historyvideos",
+                JSON.stringify({ historyvideos: resp.data.historyvideos })
+              );
 
-          setTimeout(() => navigate("/"), 800);
-        }
-      });
+              localStorage.setItem(
+                "likedvideos",
+                JSON.stringify({ likedvideos: resp.data.likedvideos })
+              );
+
+              localStorage.setItem(
+                "subscriptions",
+                JSON.stringify({ subscriptions: resp.data.subscriptions })
+              );
+
+              localStorage.setItem(
+                "watchlatervideos",
+                JSON.stringify({ watchlatervideos: resp.data.watchlatervideos })
+              );
+
+              localStorage.setItem(
+                "playlist",
+                JSON.stringify({ playlist: resp.data.playlist })
+              );
+
+              localStorage.setItem(
+                "username",
+                JSON.stringify({ username: resp.data.username })
+              );
+
+              setTimeout(() => navigate("/"), 800);
+            }
+          }
+        });
     })();
   }
 
@@ -91,6 +131,8 @@ export function AuthProvider({ children }) {
         setCheckPassword,
         checkPassword,
         setUserExists,
+        validUserName,
+        validPassword,
         userExists
       }}
     >

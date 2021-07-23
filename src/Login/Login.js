@@ -10,6 +10,8 @@ export function Login() {
     userExists,
     setUserExists,
     setCheckPassword,
+    validUserName,
+    validPassword,
     isUserLoggedIn,
     checkPassword,
     LogOut,
@@ -42,6 +44,9 @@ export function Login() {
         <small style={{ color: "red", display: userExists }}>
           User doesn't exists
         </small>
+        <small style={{ color: "red", display: validUserName }}>
+          Enter valid UserName
+        </small>
 
         <br />
         <label> Enter your password : </label>
@@ -53,7 +58,9 @@ export function Login() {
         />
         <br />
         <br />
-
+        <small style={{ color: "red", display: validPassword }}>
+          Enter valid Password
+        </small>
         <small style={{ color: "red", display: checkPassword }}>
           Enter Correct Password
         </small>
@@ -64,7 +71,7 @@ export function Login() {
           {isUserLoggedIn ? "Logout" : "Login"}
         </button>
 
-        <Link to="/subscription">
+        <Link to="/signup">
           <button className="SignupButton">Sign Up</button>
         </Link>
         <br />
