@@ -2,7 +2,7 @@
 
 :root {
   --primary-color: purple;
-  --secondary-color: lightgray;
+  --secondary-color: #d3d3d3;
 }
 #root {
   margin: 0;
@@ -224,7 +224,6 @@ a {
 }
 
 .dateAndViewPills {
-  /* position: relative; */
   float: left;
 }
 .subscribeTag,
@@ -276,6 +275,12 @@ a {
   margin: auto;
   text-align: center;
 }
+.removeButton {
+  z-index: 9;
+  float: right;
+  width: 2rem;
+  height: 2rem;
+}
 
 .HistoryList,
 .SubscriptionList,
@@ -288,6 +293,31 @@ a {
   width: 50%;
   padding: 2rem;
   margin-bottom: 3rem;
+}
+
+/*LIKED VIDEOS PAGE */
+.navigateVideosImg {
+  margin-top: 5rem;
+  height: 30rem;
+}
+
+.buttonToNavigateToHome {
+  font-family: "Nunito";
+  font-size: 1.2rem;
+  position: relative;
+  bottom: 15rem;
+}
+
+.snackBar {
+  position: fixed;
+  bottom: 10rem;
+  right: 45%;
+  font-size: 1rem;
+  border: 1px solid black;
+  background-color: var(--secondary-color);
+  z-index: 9999;
+  border-radius: 1rem;
+  padding: 1rem;
 }
 
 @media (max-width: 800px) {

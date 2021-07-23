@@ -4,6 +4,8 @@ import App from "./App";
 
 import { BrowserRouter as Router } from "react-router-dom";
 import { VideoProvider } from "./Video-Context/Video-Provider";
+import { VideoLibraryReducerProvider } from "./Video-Context/VideoLibrary-Reducer";
+
 import { AuthProvider } from "./Login/auth-context";
 
 export { RedirectPage } from "./Redirect-Page/Redirect-Page";
@@ -17,16 +19,19 @@ export { LikedVideos } from "./Liked-Videos/Liked-Videos";
 export { Subscription } from "./Subscription-Page/Subscription-Page";
 export { WatchLater } from "./Watch-Later/WatchLater-Page";
 export { Login } from "./Login/Login";
+export { SignUp } from "./Login/SignUp";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <StrictMode>
     <Router>
-      <AuthProvider>
-        <VideoProvider>
-          <App />
-        </VideoProvider>
-      </AuthProvider>
+      <VideoProvider>
+        <VideoLibraryReducerProvider>
+          <AuthProvider>
+            <App />
+          </AuthProvider>
+        </VideoLibraryReducerProvider>
+      </VideoProvider>
     </Router>
   </StrictMode>,
   rootElement
