@@ -3,6 +3,8 @@ import { useVideoLibraryReducer } from "../Video-Context/VideoLibrary-Reducer";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function VideoPage() {
   const { videoID } = useParams();
@@ -18,7 +20,27 @@ export function VideoPage() {
     likedvideos: []
   };
 
-  const [popUp, setPopUp] = useState("none");
+  const addedToLike = () =>
+    toast.success("Updating liked videos", {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined
+    });
+
+  const notifyWishlist = () =>
+    toast.success("Updating watchlater", {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined
+    });
 
   const [likedvideo, setLikedVideo] = useState(likedvideos);
 
@@ -55,8 +77,6 @@ export function VideoPage() {
           `https://videolib.sandeepmehta215.repl.co/addtolikedvideos?id=${username}`
         )
         .then((resp) => {
-          setPopUp("none");
-
           if (typeof resp.data.likedvideos === "object") {
             localStorage.setItem(
               "likedvideos",
@@ -77,8 +97,6 @@ export function VideoPage() {
           `https://videolib.sandeepmehta215.repl.co/addtowatchlatervideos?id=${username}`
         )
         .then((resp) => {
-          setPopUp("none");
-
           if (typeof resp.data.watchlatervideos === "object") {
             localStorage.setItem(
               "watchlatervideos",
@@ -99,8 +117,6 @@ export function VideoPage() {
           `https://videolib.sandeepmehta215.repl.co/addtosubscription?id=${username}`
         )
         .then((resp) => {
-          setPopUp("none");
-
           if (typeof resp.data.subscriptions === "object") {
             localStorage.setItem(
               "subscriptions",
@@ -117,6 +133,7 @@ export function VideoPage() {
   return (
     videoSrc && (
       <div className="videoPage">
+        <ToastContainer />
         <iframe
           width="560"
           height="315"
@@ -161,8 +178,6 @@ export function VideoPage() {
               <button
                 className="subscribedTag"
                 onClick={() => {
-                  setPopUp("block");
-
                   username
                     ? videoDispatch({ type: "SUBSCRIBED", obj })
                     : navigate("/login");
@@ -175,8 +190,6 @@ export function VideoPage() {
             ) : (
               <button
                 onClick={() => {
-                  setPopUp("block");
-
                   username
                     ? videoDispatch({ type: "SUBSCRIBE", obj })
                     : navigate("/login");
@@ -207,8 +220,7 @@ export function VideoPage() {
             <button
               className="bi bi-hand-thumbs-upButton"
               onClick={() => {
-                setPopUp("block");
-
+                addedToLike();
                 username
                   ? videoDispatch({ type: "REMOVE_FROM_LIKED", obj })
                   : navigate("/login");
@@ -222,8 +234,6 @@ export function VideoPage() {
                 className="bi bi-hand-thumbs-up fill"
                 viewBox="0 0 20 20"
                 onClick={() => {
-                  setPopUp("block");
-
                   username
                     ? videoDispatch({ type: "REMOVE_FROM_LIKED", obj })
                     : navigate("/login");
@@ -238,8 +248,7 @@ export function VideoPage() {
             <button
               className="bi bi-hand-thumbs-upButton"
               onClick={() => {
-                setPopUp("block");
-
+                addedToLike();
                 username
                   ? videoDispatch({ type: "ADD_TO_LIKED", obj })
                   : navigate("/login");
@@ -253,8 +262,6 @@ export function VideoPage() {
                 className="bi bi-hand-thumbs-up"
                 viewBox="0 0 20 20"
                 onClick={() => {
-                  setPopUp("block");
-
                   username
                     ? videoDispatch({ type: "ADD_TO_LIKED", obj })
                     : navigate("/login");
@@ -277,8 +284,7 @@ export function VideoPage() {
             <button
               className="bi bi-stopwatch"
               onClick={() => {
-                setPopUp("block");
-
+                notifyWishlist();
                 username
                   ? videoDispatch({ type: "REMOVE_FROM_WATCHLATER", obj })
                   : navigate("/login");
@@ -299,8 +305,7 @@ export function VideoPage() {
             <button
               className="bi bi-stopwatch"
               onClick={() => {
-                setPopUp("block");
-
+                notifyWishlist();
                 username
                   ? videoDispatch({ type: "ADD_TO_WATCHLATER", obj })
                   : navigate("/login");
