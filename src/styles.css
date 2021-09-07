@@ -309,6 +309,10 @@ a {
   margin-bottom: 3rem;
 }
 
+.SubscriptionList {
+  border: none;
+}
+
 /*LIKED VIDEOS PAGE */
 .navigateVideosImg {
   margin-top: 5rem;
