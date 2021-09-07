@@ -84,7 +84,7 @@ export function Subscription() {
             </button>
           </>
         )}
-        <ul className="videoBadges">
+        <ul>
           {videoSrc.map((obj) => {
             return (
               <>
@@ -139,7 +139,7 @@ export function Subscription() {
                   <li key={obj?.videoDetails.id} className="SubscriptionList">
                     <Link to={`/video/${obj?.videoDetails.id}`}>
                       <img
-                        className="videoSnippet"
+                        className="videoSnippet Liked"
                         title={obj?.srcLinks.title}
                         src={obj?.srcLinks.imgSrc}
                         alt="loading"
@@ -155,6 +155,19 @@ export function Subscription() {
             );
           })}
         </ul>
+        {username !== null && subscription.length === 0 && (
+          <>
+            <h2>You haven't Subscribed any streamer !!!</h2>
+            <Img className="navigateVideosImg" onClick={() => navigate("/")} />
+
+            <button
+              className="buttonToNavigateToHome"
+              onClick={() => navigate("/")}
+            >
+              Click here to watch videos
+            </button>
+          </>
+        )}
       </div>
     </>
   );

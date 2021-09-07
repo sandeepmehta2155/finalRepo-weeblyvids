@@ -36,8 +36,6 @@ export function LikedVideos() {
       progress: undefined
     });
 
-  const [popUp, setPopUp] = useState("none");
-
   async function CallLikedVideos() {
     if (username)
       axios
@@ -45,8 +43,6 @@ export function LikedVideos() {
           `https://videolib.sandeepmehta215.repl.co/addtolikedvideos?id=${username}`
         )
         .then((resp) => {
-          setPopUp("none");
-
           if (typeof resp.data.likedvideos === "object") {
             localStorage.setItem(
               "likedvideos",
@@ -66,9 +62,7 @@ export function LikedVideos() {
       <ToastContainer />
       <div className="LikedItems">
         <h1 className="LikedTag">Liked Videos</h1>
-        <div className="snackBar" style={{ display: popUp }}>
-          Updating Liked Videos.....
-        </div>
+
         {username === null && (
           <>
             <Img className="navigateVideosImg" />
@@ -100,8 +94,6 @@ export function LikedVideos() {
                       <RemoveButton
                         className="removeButton"
                         onClick={() => {
-                          setPopUp("block");
-
                           videoDispatch({ type: "REMOVE_FROM_LIKED", obj });
                           updateLikedVideos();
                           setTimeout(() => CallLikedVideos(), 800);
