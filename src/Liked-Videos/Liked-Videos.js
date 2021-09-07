@@ -7,6 +7,9 @@ import { useState } from "react";
 import axios from "axios";
 import { useVideoLibraryReducer } from "../Video-Context/VideoLibrary-Reducer";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export function LikedVideos() {
   const { videoSrc } = useVid();
 
@@ -21,6 +24,17 @@ export function LikedVideos() {
   const { username } = JSON.parse(localStorage.getItem("username")) || {
     username: null
   };
+
+  const updateLikedVideos = () =>
+    toast.success("Updating liked videos", {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined
+    });
 
   const [popUp, setPopUp] = useState("none");
 
@@ -49,6 +63,7 @@ export function LikedVideos() {
   return (
     <>
       <useComponent.Navigation />
+      <ToastContainer />
       <div className="LikedItems">
         <h1 className="LikedTag">Liked Videos</h1>
         <div className="snackBar" style={{ display: popUp }}>
@@ -88,7 +103,7 @@ export function LikedVideos() {
                           setPopUp("block");
 
                           videoDispatch({ type: "REMOVE_FROM_LIKED", obj });
-
+                          updateLikedVideos();
                           setTimeout(() => CallLikedVideos(), 800);
                         }}
                       />

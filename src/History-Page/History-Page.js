@@ -7,6 +7,9 @@ import { useVideoLibraryReducer } from "../Video-Context/VideoLibrary-Reducer";
 import { useState } from "react";
 import axios from "axios";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export function HistoryPage() {
   const { videoSrc } = useVid();
 
@@ -20,13 +23,22 @@ export function HistoryPage() {
     historyvideos: []
   };
 
+  const removeVideoFromHistory = () =>
+    toast.success("Removing video from history...", {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined
+    });
+
   const [historyvideo, setHistoryVideo] = useState(historyvideos);
 
   const { username } = JSON.parse(localStorage.getItem("username")) || {
     username: null
   };
-
-  const [popUp, setPopUp] = useState("none");
 
   async function CallHistoryVideos() {
     if (username)
@@ -35,8 +47,6 @@ export function HistoryPage() {
           `https://videolib.sandeepmehta215.repl.co/addtohistoryvideos?id=${username}`
         )
         .then((resp) => {
-          setPopUp("none");
-
           if (typeof resp.data.historyvideos === "object") {
             localStorage.setItem(
               "historyvideos",
@@ -53,11 +63,9 @@ export function HistoryPage() {
   return (
     <>
       <useComponent.Navigation />
+      <ToastContainer />
       <div className="HistoryItems">
         <h1 className="HistoryTag"> History </h1>
-        <div className="snackBar" style={{ display: popUp }}>
-          Updating History Videos.....
-        </div>
 
         {username === null && (
           <>
@@ -92,7 +100,7 @@ export function HistoryPage() {
                     <RemoveButton
                       className="removeButton"
                       onClick={() => {
-                        setPopUp("block");
+                        removeVideoFromHistory();
 
                         videoDispatch({ type: "REMOVE_FROM_HISTORY", obj });
 

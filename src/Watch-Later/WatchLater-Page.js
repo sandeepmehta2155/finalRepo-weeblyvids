@@ -7,6 +7,9 @@ import { ReactComponent as RemoveButton } from "../Components/remove-button.svg"
 import axios from "axios";
 import { useVideoLibraryReducer } from "../Video-Context/VideoLibrary-Reducer";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export function WatchLater() {
   const { videoSrc } = useVid();
 
@@ -16,6 +19,17 @@ export function WatchLater() {
     username: null
   };
 
+  const updatingWatchlaterVideos = () =>
+    toast.success("Unsubscribing streamer", {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined
+    });
+
   const { watchlatervideos } = JSON.parse(
     localStorage.getItem("watchlatervideos")
   ) || {
@@ -23,8 +37,6 @@ export function WatchLater() {
   };
 
   const [watchlatervideo, setWatchLaterVideo] = useState(watchlatervideos);
-
-  const [popUp, setPopUp] = useState("none");
 
   const navigate = useNavigate();
 
@@ -35,8 +47,6 @@ export function WatchLater() {
           `https://videolib.sandeepmehta215.repl.co/addtowatchlatervideos?id=${username}`
         )
         .then((resp) => {
-          setPopUp("none");
-
           if (typeof resp.data.watchlatervideos === "object") {
             localStorage.setItem(
               "watchlatervideos",
@@ -53,11 +63,10 @@ export function WatchLater() {
   return (
     <>
       <useComponent.Navigation />
+      <ToastContainer />q
       <div className="WatchLaterItems">
         <h1 className="WatchLaterTag"> Watch-Later </h1>
-        <div className="snackBar" style={{ display: popUp }}>
-          Updating WatchLater Videos.....
-        </div>
+
         {username === null && (
           <>
             <Img className="navigateVideosImg" />
@@ -90,10 +99,8 @@ export function WatchLater() {
                     <RemoveButton
                       className="removeButton"
                       onClick={() => {
-                        setPopUp("block");
-
                         videoDispatch({ type: "REMOVE_FROM_WATCHLATER", obj });
-
+                        updatingWatchlaterVideos();
                         setTimeout(() => CallWatchLaterVideos(), 800);
                       }}
                     />

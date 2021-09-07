@@ -5,6 +5,8 @@ import * as useComponent from "../index";
 import { ReactComponent as Img } from "./subscription.svg";
 import axios from "axios";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function Subscription() {
   const { videoSrc } = useVid();
@@ -12,6 +14,17 @@ export function Subscription() {
   const { username } = JSON.parse(localStorage.getItem("username")) || {
     username: null
   };
+
+  const subscriptionRemoved = () =>
+    toast.success("Unsubscribing streamer", {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined
+    });
 
   const { videoDispatch } = useVideoLibraryReducer();
   const navigate = useNavigate();
@@ -47,6 +60,7 @@ export function Subscription() {
   return (
     <>
       <useComponent.Navigation />
+      <ToastContainer />
 
       <div className="SubscribedItems">
         <h1 className="SubscriptionTag">Subscription</h1>
@@ -102,6 +116,7 @@ export function Subscription() {
                                   obj
                                 })
                               : navigate("/login");
+                            subscriptionRemoved();
                             setTimeout(() => CallSubscriptions(), 1000);
                           }}
                         >
