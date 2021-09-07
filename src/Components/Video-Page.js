@@ -170,7 +170,8 @@ export function VideoPage() {
           <span>
             {subscription
               .map((subscriptionObject) => {
-                if (subscriptionObject !== obj?.videoDetails.id) return obj;
+                if (subscriptionObject !== obj?.videoDetails.streamer)
+                  return obj;
                 return undefined;
               })
               .filter((key) => key !== undefined).length <

@@ -103,7 +103,7 @@ const videoReducer = (state, action) => {
             `https://videolib.sandeepmehta215.repl.co/addtosubscription/${username}`,
             {
               params: {
-                videoid: action.obj.videoDetails.id
+                videoid: action.obj.videoDetails.streamer
               }
             }
           )
@@ -117,7 +117,7 @@ const videoReducer = (state, action) => {
             `https://videolib.sandeepmehta215.repl.co/removefromsubscription/${username}`,
             {
               params: {
-                videoid: action.obj.videoDetails.id
+                videoid: action.obj.videoDetails.streamer
               }
             }
           )
