@@ -31,6 +31,17 @@ export function VideoPage() {
       progress: undefined
     });
 
+  const subscriptionRemoved = () =>
+    toast.success("Unsubscribing streamer", {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined
+    });
+
   const addedToLike = () =>
     toast.success("Updating liked videos", {
       position: "bottom-center",
@@ -187,6 +198,7 @@ export function VideoPage() {
                   username
                     ? videoDispatch({ type: "SUBSCRIBED", obj })
                     : navigate("/login");
+                  subscriptionRemoved();
                   setTimeout(() => CallSubscriptions(), 1000);
                 }}
               >
