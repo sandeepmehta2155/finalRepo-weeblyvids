@@ -77,6 +77,7 @@ export function Login() {
         <Link to="/signup">
           <button className="SignupButton">Sign Up</button>
         </Link>
+        <br />
         {isUserLoggedIn && (
           <span style={{ color: "green" }}>
             User Logged in successfully
